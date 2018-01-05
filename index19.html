@@ -13,8 +13,21 @@
     <script src="script4.js"></script>
 
 </head>
-<body  ng-controller="myCtrl">
-    <div class="container" >
+<body  >
+    <div class="container" ng-controller="myCtrl">
+        <div class="row">
+            <div class="col-md-9">
+                    <h2 class="weather">Weather of your location</h2>
+                        <input ng-model="element2"type="text" class="form-control" placeholder="ex- Kolkata" name="name" id="city"></div>
+                
+                <div class="col-md-3">
+                 <button type="button" class="btn btn-success btn-modified" ng-click="weather()" style="margin-top: 60px;">Search</button>
+                    <span>{{mySuccess.location.name}}</span>
+                    <span ng-bind="mySuccess.current.temp_c"></span>
+            </div>
+            
+                  </div>
+        
     <div class="row">
                 
                 <div class="col-md-9">
@@ -22,45 +35,57 @@
                      <h3>What To Do</h3>
                     <form>
                     <input ng-model="element" type="text" class="form-control" placeholder="ex- Buy a MacBook" name="name">
+                         <input ng-model="element1" type="date" class="form-control" placeholder="ex- Buy a MacBook" name="name">
                     <button type="button" class="btn btn-success btn-modified" ng-click="addElement()"style="margin-top: 10px;">Add Now</button>
                         <br>
                         
                     </form>
                 </div>
+        <div class="col-md-3 pull-right clock" ng-bind="clock"></div>
+                </div>
                 
             
             <div class="row">
                 <div class="col-md-6">
-                    
+                    <label class="pending"  value="Shreetoma">No of pending Task</label> 
+                        <label class="pending" ng-bind="pendingtask" value="Shreetoma"style="margin-left: 20px;">0</label>
                     <h4>Check your To Do list</h4>
                     <hr class="border">
                     <div class="well well-modified">
                         <div class="row">
                             <div class="col-md-12" ng-repeat="x in todoList">
-                                <input type="checkbox" > <span ng-bind="x.todoText"></span><span><button >Delete</button></span>
+                                <input type="checkbox" ng-model="completed" ng-change="completeElement($index)" > <span ng-bind="x.todoText | uppercase"></span><span ng-bind="x.todoText1 | date : 'dd.MM.y' "></span><span>
+                                <button ng-click="deleteElement($index)" >Delete</button></span>
                             </div>
                         </div>
                 </div>
                     </div>
-                </div>
-                <!--<div class="col-md-6">
+               
+                <div class="col-md-6">
                      <label class="pending"  value="Shreetoma">No of completed Task</label> 
-                        <label class="pending " id="completedtask" value="Shreetoma"style="margin-left: 20px;">0</label> 
+                        <label class="pending" ng-bind="completedTask" value="Shreetoma"style="margin-left: 20px;">0</label>
                     <h4>Check your Completed task</h4>
                     <hr class="border">
                     <div class="well well-modified">
                         <div class="row">
-                            <ul id="taskscompleted">
-
-        
-      </ul>
-                        </div>
+                          <div class="col-md-12" ng-repeat="y in todoComplete">
+                                 <span>{{y.todoText}} {{y.todoText1 | date}} </span><span>
+                                <button ng-click="deleteElement1($index)" >Delete</button></span>
+                            </div>   
+                           
                 </div>
                     
                     
                 
-            </div>-->
+            </div>
+                 </div>
         </div>
+    </div>
+
+    <div ng-controller="myController2">
+    <input ng-model="element3"type="text" class="form-control" placeholder="ex- Kolkata" name="name" id="city"> 
+        <input ng-model="element4"type="text" class="form-control" placeholder="ex- Kolkata" name="name" id="city"> 
+         <button type="button" class="btn btn-success btn-modified" ng-click="save()" style="margin-top: 60px;">Save</button>
     </div>
     </body>
 </html>
