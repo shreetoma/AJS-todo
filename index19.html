@@ -9,7 +9,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style17.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+   
+    <link rel="stylesheet" type="text/css" href="style19.css">
     <script src="script4.js"></script>
 
 </head>
@@ -17,7 +19,7 @@
     <div class="container" ng-controller="myCtrl">
         <div class="row">
             <div class="col-md-9">
-                    <h2 class="weather">Weather of your location</h2>
+                    <h2 class="weather" ng-class=" {'first':mySuccess.current.condition.text=='Mist', 'second':mySuccess.current.condition.text=='Clear' , 'third':mySuccess.current.condition.text=='Sunny', 'fourth':mySuccess.current.condition.text=='Overcast'}">Weather of your location</h2>
                         <input ng-model="element2"type="text" class="form-control" placeholder="ex- Kolkata" name="name" id="city"></div>
                 
                 <div class="col-md-3">
@@ -51,9 +53,9 @@
                         <label class="pending" ng-bind="pendingtask" value="Shreetoma"style="margin-left: 20px;">0</label>
                     <h4>Check your To Do list</h4>
                     <hr class="border">
-                    <div class="well well-modified">
+                    <div class="well well-modified" ng-if="todoList.length>0" ng-class="todoList.length>5 ? 'backgroundcolor2' : 'backgroundcolor1'">
                         <div class="row">
-                            <div class="col-md-12" ng-repeat="x in todoList">
+                            <div class="col-md-12"  ng-repeat="x in todoList">
                                 <input type="checkbox" ng-model="completed" ng-change="completeElement($index)" > <span ng-bind="x.todoText | uppercase"></span><span ng-bind="x.todoText1 | date : 'dd.MM.y' "></span><span>
                                 <button ng-click="deleteElement($index)" >Delete</button></span>
                             </div>
@@ -66,17 +68,14 @@
                         <label class="pending" ng-bind="completedTask" value="Shreetoma"style="margin-left: 20px;">0</label>
                     <h4>Check your Completed task</h4>
                     <hr class="border">
-                    <div class="well well-modified">
+                    <div class="well well-modified" ng-if="todoList.length>0" ng-class="todoList.length>5 ? 'backgroundcolor2' : 'backgroundcolor1'">
                         <div class="row">
                           <div class="col-md-12" ng-repeat="y in todoComplete">
                                  <span>{{y.todoText}} {{y.todoText1 | date}} </span><span>
                                 <button ng-click="deleteElement1($index)" >Delete</button></span>
-                            </div>   
-                           
+                            </div>                   
                 </div>
                     
-                    
-                
             </div>
                  </div>
         </div>
@@ -86,6 +85,9 @@
     <input ng-model="element3"type="text" class="form-control" placeholder="ex- Kolkata" name="name" id="city"> 
         <input ng-model="element4"type="text" class="form-control" placeholder="ex- Kolkata" name="name" id="city"> 
          <button type="button" class="btn btn-success btn-modified" ng-click="save()" style="margin-top: 60px;">Save</button>
+    </div>
+    <div ng-controller="myController4">
+        <h2 ng-model="element5">Welcome Back</h2>
     </div>
     </body>
 </html>

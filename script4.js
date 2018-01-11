@@ -1,4 +1,23 @@
+
+
 var app = angular.module('myApp', []);
+app.controller('myController3',function($scope, $cookies){
+    $scope.logIn= function(){
+        if($scope.element3=="Shree" && $scope.element4=="1234"){
+             $cookies.put("element3", $scope.element3);
+             location.href="/index17.html";
+            $cookies.get('element3');
+        }
+        else{
+        alert("Wrong user ID");
+    }
+    }
+    
+})
+app.controller('myController4',function($scope, $cookies, $window){
+   $scope.element5 = "welcome back  " + $cookies.get('element3');
+})
+
 
 app.controller('myController2',function($scope,$http){
     $scope.save = function(){
